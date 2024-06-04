@@ -82,6 +82,52 @@ class Concert:
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
 
+    def update(self):
+        sql = """
+            UPDATE concerts
+            SET tour = ?, date = ?, city = ?, venue = ?, artist_id = ?
+            WHERE id = ?
+        """
+
+        CURSOR.execute(sql, (self.tour, self.date, self.city, self.venue, self.artist_id, self.id))
+        CONN.commit()
+
+    def delete(self):
+        sql = """
+            DELETE FROM artists
+            WHERE id = ?
+        """
+
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+        del type(self).all[self.id]
+        self.id = None
+
     @classmethod
-    def instance_from_db(cls):
-        pass
+    def instance_from_db(cls, row):
+        concert = cls.all.get(row[0])
+
+        if concert:
+            concert.tour = row[1]
+            concert.date = row[2]
+            concert.city = row[3]
+            concert.venue = row[4]
+            concert.artist_id = row[5]
+
+        else:
+            concert = cls(row[1], row[2], row[3], row[4], row[5])
+            concert.id = row[0]
+            cls.all[concert.id] = concert
+
+        return concert
+    
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT * FROM concerts
+        """
+
+        rows = CURSOR.execute(sql).fetchall()
+
+        return [cls.instance_from_db(row) for row in rows]
