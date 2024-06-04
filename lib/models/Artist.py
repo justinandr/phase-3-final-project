@@ -68,6 +68,13 @@ class Artist:
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
 
+    @classmethod
+    def create(cls, name, age):
+        
+        artist = cls(name, age)
+        artist.save()
+        return artist
+
     def update(self):
         sql = """
             UPDATE artists

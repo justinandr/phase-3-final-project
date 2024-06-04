@@ -9,3 +9,8 @@ def main():
     Concert.drop_table()
     Artist.create_table()
     Concert.create_table()
+
+    Artist.create('Celine Dion', 56)
+    Artist.create('Michael Buble', 48)
+
+    
