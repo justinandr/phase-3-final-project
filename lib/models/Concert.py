@@ -1,3 +1,6 @@
+from models.__init__ import CURSOR, CONN
+import datetime
+
 class Concert:
     def __init__():
         pass
