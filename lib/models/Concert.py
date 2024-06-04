@@ -82,6 +82,12 @@ class Concert:
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
 
+    @classmethod
+    def create(cls, tour, date, city, venue, artist_id):
+        concert = cls(tour, date, city, venue, artist_id)
+        concert.save()
+        return concert
+
     def update(self):
         sql = """
             UPDATE concerts
