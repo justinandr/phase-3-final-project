@@ -10,8 +10,8 @@ def exit_program():
 def get_all_artists():
     return Artist.get_all()
 
-def get_concerts():
-    pass
+def get_concerts(artist):
+    return Artist.concerts(artist)
 
 def display_artists(artists):
     print('\n*********************************')
@@ -19,8 +19,8 @@ def display_artists(artists):
         print(f'{i}. {artist.name}')
     print('*********************************\n')
 
-def display_concerts():
-    pass
+def display_concerts(artist):
+    return Artist.concerts(artist)
 
 def add_artist():
     pass

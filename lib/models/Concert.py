@@ -45,6 +45,8 @@ class Concert:
             self._date = datetime.date(year, month, day)
             #This is not done
 
+        self._date = date
+
     @classmethod
     def create_table(cls):
         sql = """
