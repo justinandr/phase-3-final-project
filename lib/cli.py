@@ -8,7 +8,7 @@ from helpers import (
 
 def main():
     while True:
-        menu()
+        main_menu()
         choice = input("> ")
         if choice == "0":
             exit_program()
@@ -18,11 +18,11 @@ def main():
             print("Invalid choice")
 
 
-def menu():
+def main_menu():
     print("Please select an option:")
     print("0. Exit the program")
     print("1. Some useful function")
-
+    
 
 if __name__ == "__main__":
     main()
