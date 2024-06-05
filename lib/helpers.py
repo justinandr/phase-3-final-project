@@ -7,16 +7,19 @@ def exit_program():
     print("Goodbye!")
     exit()
 
-def artists():
+def get_all_artists():
+    return Artist.get_all()
+
+def get_concerts():
     pass
 
-def concerts():
-    pass
+def display_artists(artists):
+    print('\n*********************************')
+    for i, artist in enumerate(artists, start=1):
+        print(f'{i}. {artist.name}')
+    print('*********************************\n')
 
-def display_artist():
-    pass
-
-def display_concert():
+def display_concerts():
     pass
 
 def add_artist():
