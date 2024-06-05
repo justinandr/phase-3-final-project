@@ -25,7 +25,7 @@ def artist_menu():
     artists = get_all_artists()
     display_artists(artists)
 
-    print("Select the number of the artist to see their details")
+    print("Type the number of the artist to see their details")
     print("Type b to go back")
     print("Type e to exit the program")
     
@@ -45,10 +45,21 @@ def concert_menu(artist):
     concerts = get_concerts(artist)
     display_concerts(concerts)
 
+    print("Type the number of a concert to edit it")
     print("Type a to add a concert")
     print("Type b to go back")
     print("Type e to exit the program")
 
+    while True:
+        choice = input("> ")
+        if choice.lower() == "b":
+            artist_menu()
+        elif choice.lower() == "e":
+            exit_program()
+        elif choice.lower() == "a":
+            pass
+        elif int(choice) > 0 and int(choice) <= len(concerts):
+            pass
 
 
 if __name__ == "__main__":
