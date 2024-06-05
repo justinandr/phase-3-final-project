@@ -32,6 +32,10 @@ def display_concerts(concerts):
 def add_artist(name, age):
     Artist.create(name, age)
 
+def delete_artist(artist):
+    Artist.delete(artist)
+    Artist.delete_artist_concerts(artist)
+
 def edit_artist():
     pass
 

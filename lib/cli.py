@@ -28,6 +28,7 @@ def artist_menu():
     print("Type the number of the artist to see their details")
     print("Type a to add an artist")
     print("Type b to go back")
+    print("Type d to delete an artist")
     print("Type e to exit the program")
     
     while True:
@@ -39,6 +40,10 @@ def artist_menu():
             artist_menu()
         elif choice.lower() == "b":
             main()
+        elif choice.lower() == "d":
+            to_delete = input("Enter the artist number you would like to delete: ")
+            delete_artist(artists[int(to_delete) - 1])
+            artist_menu()
         elif choice.lower() == "e":
             exit_program()
         elif int(choice) > 0 and int(choice) <= len(artists):

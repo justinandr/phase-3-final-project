@@ -103,7 +103,7 @@ class Concert:
 
     def delete(self):
         sql = """
-            DELETE FROM artists
+            DELETE FROM concerts
             WHERE id = ?
         """
 

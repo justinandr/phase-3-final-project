@@ -148,3 +148,13 @@ class Artist:
         rows = CURSOR.fetchall()
 
         return [Concert.instance_from_db(row) for row in rows]
+    
+    def delete_artist_concerts(self):
+        sql = """
+            SELECT * FROM concerts WHERE artist_id = ?
+        """
+        CURSOR.execute(sql, (self.id,))
+        rows = CURSOR.fetchall()
+
+        for row in rows:
+            Concert.delete(row)
