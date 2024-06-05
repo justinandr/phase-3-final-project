@@ -29,8 +29,8 @@ def display_concerts(concerts):
               f'Venue: {concert.venue}\n') 
     print('*********************************\n')
 
-def add_artist():
-    pass
+def add_artist(name, age):
+    Artist.create(name, age)
 
 def edit_artist():
     pass

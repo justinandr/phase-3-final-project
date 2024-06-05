@@ -26,12 +26,18 @@ def artist_menu():
     display_artists(artists)
 
     print("Type the number of the artist to see their details")
+    print("Type a to add an artist")
     print("Type b to go back")
     print("Type e to exit the program")
     
     while True:
         choice = input("> ")
-        if choice.lower() == "b":
+        if choice.lower() == "a":
+            name = input("Enter the artist's name: ")
+            age = int(input("Enter the artist's age: "))
+            add_artist(name, age)
+            artist_menu()
+        elif choice.lower() == "b":
             main()
         elif choice.lower() == "e":
             exit_program()
@@ -42,8 +48,6 @@ def artist_menu():
 
 #display concerts based on artist selection and list options
 def concert_menu(artist):
-    print(type(artist))
-    print(artist)
     concerts = get_concerts(artist)
     display_concerts(concerts)
 
