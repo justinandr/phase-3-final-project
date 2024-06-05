@@ -3,10 +3,6 @@
 from models.Artist import Artist
 from models.Concert import Concert
 
-def helper_1():
-    print("Performing useful function#1.")
-
-
 def exit_program():
     print("Goodbye!")
     exit()
