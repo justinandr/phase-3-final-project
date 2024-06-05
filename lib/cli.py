@@ -32,14 +32,17 @@ def artist_menu():
     while True:
         print("are we in there?")
         choice = input("> ")
-        if choice == "B" or "b":
+        if choice.lower() == "b":
+            print("here?")
             main()
         elif choice == "0":
+            print("exit?")
             exit_program()
+        
+        elif int(choice) > 0 and int(choice) <= len(artists):
+            concert_menu(artists[int(choice) - 1])
         else:
             print("Invalid choice")
-        
-        concert_menu(artists[int(choice) - 1])
 
 #display concerts based on artist selection and list options
 def concert_menu(artist):
