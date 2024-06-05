@@ -27,8 +27,9 @@ def artist_menu():
 
     print("Type the number of the artist to see their details")
     print("Type a to add an artist")
-    print("Type b to go back")
     print("Type d to delete an artist")
+    print("Type u to update an artist")
+    print("Type b to go back")
     print("Type e to exit the program")
     
     while True:
@@ -40,6 +41,12 @@ def artist_menu():
             artist_menu()
         elif choice.lower() == "b":
             main()
+        elif choice.lower() == "u":
+            to_update = input("Enter the artist number you would like to update: ")
+            name = input("Enter new name or hit <enter> to leave as is: ")
+            age = input("Enter new age or hit <enter> to leave as is: ")
+            update_artist(artists[int(to_update) - 1], name, age)
+            artist_menu()
         elif choice.lower() == "d":
             to_delete = input("Enter the artist number you would like to delete: ")
             delete_artist(artists[int(to_delete) - 1])

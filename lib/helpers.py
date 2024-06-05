@@ -20,8 +20,8 @@ def display_artists(artists):
     print('*********************************\n')
 
 def display_concerts(concerts):
-    print('\n*********************************')
-    print(Artist.find_by_id(concerts[0].artist_id).name)
+    print(f"\n{Artist.find_by_id(concerts[0].artist_id).name}'s Concerts")
+    print('*********************************')
     for i, concert in enumerate(concerts, start=1):
         print(f'{i}.\nTour: {concert.tour}\n' + \
               f'Date: {concert.date}\n' + \
@@ -31,6 +31,16 @@ def display_concerts(concerts):
 
 def add_artist(name, age):
     Artist.create(name, age)
+
+def update_artist(artist, name, age):
+    if name == "" and age == "":
+        pass
+    elif name == "":
+        artist.age = int(age)
+    elif age == "":
+        artist.name = name
+
+    Artist.update(artist)
 
 def delete_artist(artist):
     Artist.delete(artist)
