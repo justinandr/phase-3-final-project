@@ -22,3 +22,6 @@ def main():
     Concert.create("Crazy Love", "04032010", "Seattle", "KeyArena", 2)
     Concert.create("Crazy Love", "05232010", "Milan", "Mediolanum Forum", 2)
     Concert.create("Crazy Love", "04182012", "Stockholm", "Ericsson Globe", 2)
+
+if __name__ == "__main__":
+    main()

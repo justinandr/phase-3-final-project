@@ -22,18 +22,18 @@ class Concert:
     
     @property
     def tour(self):
-        return self.tour
+        return self._tour
     
     @tour.setter
     def tour(self, tour):
         if isinstance(tour, str) and len(tour):
-            self.tour = tour
+            self._tour = tour
         else:
             raise ValueError('Tour must be a non-empty string...')
         
     @property
     def date(self):
-        return self.date
+        return self._date
     
     @date.setter
     def date(self, date):
@@ -42,7 +42,7 @@ class Concert:
             day = int(date[2:4])
             year = int(date[4:])
 
-            self.date = datetime.date(year, month, day)
+            self._date = datetime.date(year, month, day)
             #This is not done
 
     @classmethod
@@ -54,6 +54,7 @@ class Concert:
             date TEXT,
             city TEXT,
             venue TEXT,
+            artist_id INTEGER,
             FOREIGN KEY (artist_id) REFERENCES artists(id)
             )
         """

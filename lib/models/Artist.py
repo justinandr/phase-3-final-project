@@ -6,9 +6,9 @@ class Artist:
     all = {}
 
     def __init__(self, name, age, id = None):
+        self.id = id
         self.name = name
         self.age = age
-        self.id = id
 
     def __repr__(self):
         return f'Name: {self.name}' + \
@@ -16,33 +16,33 @@ class Artist:
     
     @property
     def name(self):
-        return self.name
+        return self._name
     
     @name.setter
     def name(self, name):
-        if isinstance(name, str):
-            self.name = name
+        if isinstance(name, str) and len(name):
+            self._name = name
         else: 
             raise TypeError('Name must be a string...')
         
     @property
     def age(self):
-        return self.age
+        return self._age
     
     @age.setter
     def age(self, age):
         if isinstance(age, int):
-            self.age = age
+            self._age = age
         else:
             raise TypeError('Age must be an integer...')
         
     @classmethod
     def create_table(cls):
         sql = """
-            CREATE TABLE IF NOT EXISTS artists
+            CREATE TABLE IF NOT EXISTS artists (
             id INTEGER PRIMARY KEY,
             name TEXT,
-            age INTEGER
+            age INTEGER)
         """
 
         CURSOR.execute(sql)
