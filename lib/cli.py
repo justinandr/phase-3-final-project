@@ -7,18 +7,18 @@ def main():
     while True:
         main_menu()
         choice = input("> ")
-        if choice == "0":
+        if choice.lower() == "e":
             exit_program()
-        elif choice == "1":
+        elif choice.lower() == "a":
             artist_menu()
         else:
             print("Invalid choice")
 
 #list options
 def main_menu():
-    print("Please select an option:")
-    print("0. Exit the program")
-    print("1. View Artists")
+    print("Please make a selection: ")
+    print("Type a to view Artists")
+    print("Type e to exit the program")
 
 #list artists and list options (add the add artist function)
 def artist_menu():
@@ -27,18 +27,14 @@ def artist_menu():
 
     print("Select the number of the artist to see their details")
     print("Type b to go back")
-    print("0. Exit the program")
+    print("Type e to exit the program")
     
     while True:
-        print("are we in there?")
         choice = input("> ")
         if choice.lower() == "b":
-            print("here?")
             main()
-        elif choice == "0":
-            print("exit?")
+        elif choice.lower() == "e":
             exit_program()
-        
         elif int(choice) > 0 and int(choice) <= len(artists):
             concert_menu(artists[int(choice) - 1])
         else:
@@ -46,7 +42,13 @@ def artist_menu():
 
 #display concerts based on artist selection and list options
 def concert_menu(artist):
-    print(get_concerts(artist))
+    concerts = get_concerts(artist)
+    display_concerts(concerts)
+
+    print("Type a to add a concert")
+    print("Type b to go back")
+    print("Type e to exit the program")
+
 
 
 if __name__ == "__main__":
