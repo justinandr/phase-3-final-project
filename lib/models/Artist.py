@@ -156,5 +156,7 @@ class Artist:
         CURSOR.execute(sql, (self.id,))
         rows = CURSOR.fetchall()
 
-        for row in rows:
-            Concert.delete(row)
+        concerts = [Concert.instance_from_db(row) for row in rows]
+
+        for concert in concerts:
+            Concert.delete(concert)

@@ -14,18 +14,18 @@ def main():
         else:
             print("Invalid choice")
 
-#list options
+#list main menu options
 def main_menu():
     print("Please make a selection: ")
     print("Type a to view Artists")
     print("Type e to exit the program")
 
-#list artists and list options (add the add artist function)
+#list artists and list options
 def artist_menu():
     artists = get_all_artists()
     display_artists(artists)
 
-    print("Type the number of the artist to see their details")
+    print("Type the number of the artist to see their concerts")
     print("Type a to add an artist")
     print("Type d to delete an artist")
     print("Type u to update an artist")
@@ -63,7 +63,7 @@ def concert_menu(artist):
     concerts = get_concerts(artist)
     display_concerts(concerts)
 
-    print("Type the number of a concert to edit it")
+    print("Type the number of the concert to view it")
     print("Type a to add a concert")
     print("Type b to go back")
     print("Type e to exit the program")
@@ -77,7 +77,28 @@ def concert_menu(artist):
         elif choice.lower() == "a":
             pass
         elif int(choice) > 0 and int(choice) <= len(concerts):
+            individual_concert_menu(concerts[int(choice) - 1])
+
+def individual_concert_menu(concert):
+    display_individual_concert(concert)
+
+    print("Type u to update this concert")
+    print("Type d to delete this concert")
+    print("Type b to go back")
+    print("Type e to exit the program")
+
+    while True:
+        choice = input("> ")
+        if choice.lower() == "u":
             pass
+        elif choice.lower() == "d":
+            pass
+        elif choice.lower() == "b":
+            concert_menu(find_artist_by_id(concert.id))
+        elif choice.lower() == "e":
+            exit_program()
+
+
 
 
 if __name__ == "__main__":

@@ -10,6 +10,9 @@ def exit_program():
 def get_all_artists():
     return Artist.get_all()
 
+def find_artist_by_id(id):
+    return Artist.find_by_id(id)
+
 def get_concerts(artist):
     return Artist.concerts(artist)
 
@@ -29,6 +32,14 @@ def display_concerts(concerts):
               f'Venue: {concert.venue}\n') 
     print('*********************************\n')
 
+def display_individual_concert(concert):
+    print('*********************************')
+    print(f'\nTour: {concert.tour}\n' + \
+              f'Date: {concert.date}\n' + \
+              f'City: {concert.city}\n' + \
+              f'Venue: {concert.venue}\n') 
+    print('*********************************\n')
+
 def add_artist(name, age):
     Artist.create(name, age)
 
@@ -39,14 +50,17 @@ def update_artist(artist, name, age):
         artist.age = int(age)
     elif age == "":
         artist.name = name
+    else:
+        artist.name = name
+        artist.age = int(age)
 
     Artist.update(artist)
 
 def delete_artist(artist):
-    Artist.delete(artist)
     Artist.delete_artist_concerts(artist)
+    Artist.delete(artist)
 
-def edit_artist():
+def update_artist():
     pass
 
 def add_concert():
