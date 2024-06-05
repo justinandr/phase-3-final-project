@@ -16,17 +16,17 @@ def get_concerts(artist):
 def display_artists(artists):
     print('\n*********************************')
     for i, artist in enumerate(artists, start=1):
-        print(f'{i}. {artist.name}')
+        print(f'{i}. {artist.name} Age: {artist.age}')
     print('*********************************\n')
 
 def display_concerts(concerts):
     print('\n*********************************')
-    print(Artist.find_by_id(concert.artist_id).name)
+    print(Artist.find_by_id(concerts[0].artist_id).name)
     for i, concert in enumerate(concerts, start=1):
-        print(f'{i}. Tour: {concert.tour}\n' + \
-              f'Date: {concert.date}' + \
-              f'City: {concert.city}' + \
-              f'Venue: {concert.venue}') 
+        print(f'{i}.\nTour: {concert.tour}\n' + \
+              f'Date: {concert.date}\n' + \
+              f'City: {concert.city}\n' + \
+              f'Venue: {concert.venue}\n') 
     print('*********************************\n')
 
 def add_artist():

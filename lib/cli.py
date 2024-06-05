@@ -42,6 +42,8 @@ def artist_menu():
 
 #display concerts based on artist selection and list options
 def concert_menu(artist):
+    print(type(artist))
+    print(artist)
     concerts = get_concerts(artist)
     display_concerts(concerts)
 
