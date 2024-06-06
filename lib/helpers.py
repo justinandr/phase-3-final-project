@@ -39,9 +39,13 @@ def display_concerts(concerts):
     print('*********************************\n')
 
 def display_individual_concert(concert):
+    month = int(concert.date[0:2])
+    day = int(concert.date[2:4])
+    year = int(concert.date[4:])
+
     print('*********************************')
     print(f'\nTour: {concert.tour}\n' + \
-              f'Date: {concert.date}\n' + \
+              f'Date: {datetime.date(year, month, day)}\n' + \
               f'City: {concert.city}\n' + \
               f'Venue: {concert.venue}\n') 
     print('*********************************\n')
