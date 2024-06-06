@@ -98,9 +98,7 @@ def get_valid_date(date = "", new = False):
                     month = int(new_date[0:2])
                     day = int(new_date[2:4])
                     year = int(new_date[4:])
-                    print("did we make it here?")
                     if  1 <= month <= 12 and 1 <= day <= 31 and datetime.MINYEAR <= year <= datetime.MAXYEAR:
-                        print("how about here?")
                         return new_date
                 else:
                     print("Date must be in MMDDYYYY format")
