@@ -21,40 +21,64 @@ def main_menu():
 
 def artist_menu():
     artists = get_all_artists()
-    display_artists(artists)
 
-    print("Type the number of the artist to see their concerts")
-    print("Type a to add an artist")
-    print("Type d to delete an artist")
-    print("Type u to update an artist")
-    print("Type b to go back")
-    print("Type e to exit the program")
-    
-    while True:
-        choice = input("> ")
-        if choice.lower() == "a":
-            name = get_name()
-            age = get_age()
-            add_artist(name, age)
-            artist_menu()
-        elif choice.lower() == "b":
-            main()
-        elif choice.lower() == "u":
-            to_update = input("Enter the artist number you would like to update: ")
-            name = input("Enter new name or hit <enter> to leave as is: ")
-            age = input("Enter new age or hit <enter> to leave as is: ")
-            update_artist(artists[int(to_update) - 1], name, age)
-            artist_menu()
-        elif choice.lower() == "d":
-            to_delete = input("Enter the artist number you would like to delete: ")
-            delete_artist(artists[int(to_delete) - 1])
-            artist_menu()
-        elif choice.lower() == "e":
-            exit_program()
-        elif choice.isdigit() and int(choice) > 0 and int(choice) <= len(artists):
-            concert_menu(artists[int(choice) - 1])
-        else:
-            print("Invalid choice")
+    if artists:
+        display_artists(artists)
+
+        print("Type the number of the artist to see their concerts")
+        print("Type a to add an artist")
+        print("Type d to delete an artist")
+        print("Type u to update an artist")
+        print("Type b to go back")
+        print("Type e to exit the program")
+        
+        while True:
+            choice = input("> ")
+            if choice.lower() == "a":
+                name = get_name()
+                age = get_age()
+                add_artist(name, age)
+                artist_menu()
+            elif choice.lower() == "b":
+                main()
+            elif choice.lower() == "u":
+                to_update = input("Enter the artist number you would like to update: ")
+                name = input("Enter new name or hit <enter> to leave as is: ")
+                age = input("Enter new age or hit <enter> to leave as is: ")
+                update_artist(artists[int(to_update) - 1], name, age)
+                artist_menu()
+            elif choice.lower() == "d":
+                to_delete = input("Enter the artist number you would like to delete: ")
+                delete_artist(artists[int(to_delete) - 1])
+                artist_menu()
+            elif choice.lower() == "e":
+                exit_program()
+            elif choice.isdigit() and int(choice) > 0 and int(choice) <= len(artists):
+                concert_menu(artists[int(choice) - 1])
+            else:
+                print("Invalid choice")
+
+    else:
+        print('\n*********************************')
+        print("There are no artists to display")
+        print('*********************************\n')
+        print("Type a to add an artist")
+        print("Type b to go back")
+        print("Type e to exit the program")
+
+        while True:
+            choice = input("> ")
+            if choice.lower() == "a":
+                name = get_name()
+                age = get_age()
+                add_artist(name, age)
+                artist_menu()
+            elif choice.lower() == "b":
+                main()
+            elif choice.lower() == "e":
+                exit_program()
+            else:
+                print("Invalid choice")
 
 def concert_menu(artist):
     concerts = get_concerts(artist)
