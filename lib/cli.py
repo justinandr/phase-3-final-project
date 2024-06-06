@@ -14,13 +14,11 @@ def main():
         else:
             print("Invalid choice")
 
-#list main menu options
 def main_menu():
     print("Please make a selection: ")
     print("Type a to view Artists")
     print("Type e to exit the program")
 
-#list artists and list options
 def artist_menu():
     artists = get_all_artists()
     display_artists(artists)
@@ -58,10 +56,16 @@ def artist_menu():
         else:
             print("Invalid choice")
 
-#display concerts based on artist selection and list options
 def concert_menu(artist):
     concerts = get_concerts(artist)
-    display_concerts(concerts)
+
+    if concerts:
+        display_concerts(concerts)
+    else: 
+        print('\n*********************************')
+        print("This artist has no saved concerts")
+        print('*********************************\n')
+        artist_menu()
 
     print("Type the number of the concert to view it")
     print("Type a to add a concert")

@@ -30,9 +30,9 @@ def display_concerts(concerts):
     print('*********************************')
     for i, concert in enumerate(concerts, start=1):
         print(f'{i}.\nTour: {concert.tour}\n' + \
-              f'Date: {concert.date}\n' + \
-              f'City: {concert.city}\n' + \
-              f'Venue: {concert.venue}\n') 
+            f'Date: {concert.date}\n' + \
+            f'City: {concert.city}\n' + \
+            f'Venue: {concert.venue}\n') 
     print('*********************************\n')
 
 def display_individual_concert(concert):
