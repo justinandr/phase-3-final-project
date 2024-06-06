@@ -129,14 +129,29 @@ def get_name():
         else: 
             return name
     
-def get_age():
-    while True:
-        age = input("Enter age: ")
+def get_age(age = "", new = False):
+    if new == True:
+        while True:
+            new_age = input("Enter age: ")
 
-        if age == "":
-            print("Age cannot be left blank ")
+            if new_age == "":
+                print("Age cannot be left blank ")
+            
+            if new_age.isdigit():
+                return int(new_age)
+            else:
+                print("Age must be a number")
+    else:
+        while True:
+            new_age = input("Enter new age or hit <enter> to leave as is: ")
 
-        return int(age)
+            if new_age == "":
+                return age
+            
+            if new_age.isdigit():
+                return int(new_age)
+            else:
+                print("Age must be a number")
     
 def get_tour():
     while True:

@@ -36,7 +36,7 @@ def artist_menu():
             choice = input("> ")
             if choice.lower() == "a":
                 name = get_name()
-                age = get_age()
+                age = get_age("", True)
                 add_artist(name, age)
                 artist_menu()
             elif choice.lower() == "b":
@@ -44,7 +44,7 @@ def artist_menu():
             elif choice.lower() == "u":
                 to_update = input("Enter the artist number you would like to update: ")
                 name = input("Enter new name or hit <enter> to leave as is: ")
-                age = input("Enter new age or hit <enter> to leave as is: ")
+                age = get_age(artists[int(to_update) - 1])
                 update_artist(artists[int(to_update) - 1], name, age)
                 artist_menu()
             elif choice.lower() == "d":
