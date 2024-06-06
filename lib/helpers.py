@@ -15,7 +15,6 @@ def find_artist_by_id(id):
     return Artist.find_by_id(id)
 
 def get_concerts(artist):
-    print(artist)
     return artist.concerts()
 
 def display_artists(artists):
@@ -25,7 +24,6 @@ def display_artists(artists):
     print('*********************************\n')
 
 def display_concerts(concerts):
-    print(concerts[0])
     print(f"\n{Artist.find_by_id(concerts[0].artist_id).name}'s Concerts")
     print('*********************************')
 
@@ -97,7 +95,13 @@ def get_valid_date(date = "", new = False):
             new_date = input("Enter date: ")
             try:
                 if new_date.isdigit() and len(new_date) == 8:
-                    return new_date
+                    month = int(new_date[0:2])
+                    day = int(new_date[2:4])
+                    year = int(new_date[4:])
+                    print("did we make it here?")
+                    if  1 <= month <= 12 and 1 <= day <= 31 and datetime.MINYEAR <= year <= datetime.MAXYEAR:
+                        print("how about here?")
+                        return new_date
                 else:
                     print("Date must be in MMDDYYYY format")
 
@@ -110,10 +114,17 @@ def get_valid_date(date = "", new = False):
             if new_date == "":
                 return date
             try:
-                if isinstance(new_date, str) and len(new_date) == 8:
-                    return new_date
+                if new_date.isdigit() and len(new_date) == 8:
+                    month = int(new_date[0:2])
+                    day = int(new_date[2:4])
+                    year = int(new_date[4:])
+
+                    if  1 <= month <= 12 and 1 <= day <= 31 and datetime.MINYEAR <= year <= datetime.MAXYEAR:
+                        return new_date
+                    else:
+                        print("Date must be in MMDDYYYY format and be a valid date")
                 else:
-                    print("Date must be in MMDDYYYY format")
+                    print("Date must be in MMDDYYYY format and be a valid date")
 
             except Exception as exc:
                 print("There was an error setting the date: ", exc)

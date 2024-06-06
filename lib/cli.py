@@ -109,6 +109,8 @@ def concert_menu(artist):
             venue = get_venue()
             add_concert(tour, date, city, venue, artist.id)
             concert_menu(artist)
+        elif choice == "":
+            print("Invalid choice")
         elif int(choice) > 0 and int(choice) <= len(concerts):
             individual_concert_menu(concerts[int(choice) - 1])
         else:
