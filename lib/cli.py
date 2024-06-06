@@ -53,7 +53,7 @@ def artist_menu():
             artist_menu()
         elif choice.lower() == "e":
             exit_program()
-        elif int(choice) > 0 and int(choice) <= len(artists):
+        elif choice.isdigit() and int(choice) > 0 and int(choice) <= len(artists):
             concert_menu(artists[int(choice) - 1])
         else:
             print("Invalid choice")
@@ -75,9 +75,14 @@ def concert_menu(artist):
         elif choice.lower() == "e":
             exit_program()
         elif choice.lower() == "a":
-            pass
+            tour = input("Enter tour name: ")
+            date = get_valid_date()
+            city = input("Enter city: ")
+            venue = input("Enter venue: ")
         elif int(choice) > 0 and int(choice) <= len(concerts):
             individual_concert_menu(concerts[int(choice) - 1])
+        else:
+            print("Invalid choice")
 
 def individual_concert_menu(concert):
     display_individual_concert(concert)
@@ -90,13 +95,20 @@ def individual_concert_menu(concert):
     while True:
         choice = input("> ")
         if choice.lower() == "u":
-            pass
+            tour = input("Enter tour name or hit <enter> to leave as is: ")
+            date = get_valid_date()
+            city = input("Enter city or hit <enter> to leave as is: ")
+            venue = input("Enter venue or hit <enter> to leave is: ")
+            update_concert(concert, tour, date, city, venue)
+            individual_concert_menu(concert)
         elif choice.lower() == "d":
             pass
         elif choice.lower() == "b":
             concert_menu(find_artist_by_id(concert.id))
         elif choice.lower() == "e":
             exit_program()
+        else:
+            print("Invalid choice")
 
 
 

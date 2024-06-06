@@ -1,5 +1,4 @@
 from models.__init__ import CURSOR, CONN
-import datetime
 
 class Concert:
 
@@ -37,14 +36,6 @@ class Concert:
     
     @date.setter
     def date(self, date):
-        if isinstance(date, str) and len(date) == 8:
-            month = int(date[0:2])
-            day = int(date[2:4])
-            year = int(date[4:])
-
-            self._date = datetime.date(year, month, day)
-            #This is not done
-
         self._date = date
 
     @classmethod
