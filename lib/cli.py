@@ -80,7 +80,7 @@ def concert_menu(artist):
             exit_program()
         elif choice.lower() == "a":
             tour = get_tour()
-            date = get_valid_date(True)
+            date = get_valid_date("", True)
             city = get_city()
             venue = get_venue()
             add_concert(tour, date, city, venue, artist.id)

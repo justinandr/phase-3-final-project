@@ -2,7 +2,7 @@
 
 from models.Artist import Artist
 from models.Concert import Concert
-
+import datetime 
 
 def exit_program():
     print("Goodbye!")
@@ -28,9 +28,14 @@ def display_concerts(concerts):
     print(concerts[0])
     print(f"\n{Artist.find_by_id(concerts[0].artist_id).name}'s Concerts")
     print('*********************************')
+
     for i, concert in enumerate(concerts, start=1):
+        month = int(concert.date[0:2])
+        day = int(concert.date[2:4])
+        year = int(concert.date[4:])
+        
         print(f'{i}.\nTour: {concert.tour}\n' + \
-            f'Date: {concert.date}\n' + \
+            f'Date: {datetime.date(year, month, day)}\n' + \
             f'City: {concert.city}\n' + \
             f'Venue: {concert.venue}\n') 
     print('*********************************\n')
@@ -91,6 +96,20 @@ def get_valid_date(date = "", new = False):
         while True:
             new_date = input("Enter date: ")
             try:
+                if new_date.isdigit() and len(new_date) == 8:
+                    return new_date
+                else:
+                    print("Date must be in MMDDYYYY format")
+
+            except Exception as exc:
+                print("There was an error setting the date: ", exc)
+    else:
+        while True:
+            new_date = input("Enter date or hit <enter> to leave as is: ")
+
+            if new_date == "":
+                return date
+            try:
                 if isinstance(new_date, str) and len(new_date) == 8:
                     return new_date
                 else:
@@ -98,20 +117,6 @@ def get_valid_date(date = "", new = False):
 
             except Exception as exc:
                 print("There was an error setting the date: ", exc)
-    
-    while True:
-        new_date = input("Enter date or hit <enter> to leave as is: ")
-
-        if new_date == "":
-            return date
-        try:
-            if isinstance(new_date, str) and len(new_date) == 8:
-                return new_date
-            else:
-                print("Date must be in MMDDYYYY format")
-
-        except Exception as exc:
-            print("There was an error setting the date: ", exc)
         
 
 def get_name():
