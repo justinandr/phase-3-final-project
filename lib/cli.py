@@ -35,8 +35,8 @@ def artist_menu():
     while True:
         choice = input("> ")
         if choice.lower() == "a":
-            name = input("Enter the artist's name: ")
-            age = int(input("Enter the artist's age: "))
+            name = get_name()
+            age = get_age()
             add_artist(name, age)
             artist_menu()
         elif choice.lower() == "b":
@@ -75,10 +75,12 @@ def concert_menu(artist):
         elif choice.lower() == "e":
             exit_program()
         elif choice.lower() == "a":
-            tour = input("Enter tour name: ")
-            date = get_valid_date()
-            city = input("Enter city: ")
-            venue = input("Enter venue: ")
+            tour = get_tour()
+            date = get_valid_date(True)
+            city = get_city()
+            venue = get_venue()
+            add_concert(tour, date, city, venue, artist.id)
+            concert_menu(artist)
         elif int(choice) > 0 and int(choice) <= len(concerts):
             individual_concert_menu(concerts[int(choice) - 1])
         else:
@@ -96,15 +98,17 @@ def individual_concert_menu(concert):
         choice = input("> ")
         if choice.lower() == "u":
             tour = input("Enter tour name or hit <enter> to leave as is: ")
-            date = get_valid_date()
+            date = get_valid_date(concert.date)
             city = input("Enter city or hit <enter> to leave as is: ")
             venue = input("Enter venue or hit <enter> to leave is: ")
             update_concert(concert, tour, date, city, venue)
             individual_concert_menu(concert)
         elif choice.lower() == "d":
-            pass
+            id = concert.artist_id
+            delete_concert(concert)
+            concert_menu(find_artist_by_id(id))
         elif choice.lower() == "b":
-            concert_menu(find_artist_by_id(concert.id))
+            concert_menu(find_artist_by_id(concert.artist_id))
         elif choice.lower() == "e":
             exit_program()
         else:

@@ -15,7 +15,8 @@ def find_artist_by_id(id):
     return Artist.find_by_id(id)
 
 def get_concerts(artist):
-    return Artist.concerts(artist)
+    print(artist)
+    return artist.concerts()
 
 def display_artists(artists):
     print('\n*********************************')
@@ -79,18 +80,82 @@ def update_concert(concert, tour, date, city, venue):
 
     Concert.update(concert)
 
-def add_concert(tour, date, city, venue):
-    Concert.create(tour, date, city, venue)
+def add_concert(tour, date, city, venue, artist_id):
+    Concert.create(tour, date, city, venue, artist_id)
 
-def get_valid_date():
+def delete_concert(concert):
+    Concert.delete(concert)
 
+def get_valid_date(date = "", new = False):
+    if new == True:
+        while True:
+            new_date = input("Enter date: ")
+            try:
+                if isinstance(new_date, str) and len(new_date) == 8:
+                    return new_date
+                else:
+                    print("Date must be in MMDDYYYY format")
+
+            except Exception as exc:
+                print("There was an error setting the date: ", exc)
+    
     while True:
-        date = input("Enter date or hit <enter> to keep as is: ")
+        new_date = input("Enter date or hit <enter> to leave as is: ")
+
+        if new_date == "":
+            return date
         try:
-            if isinstance(date, str) and len(date) == 8:
-                return date
+            if isinstance(new_date, str) and len(new_date) == 8:
+                return new_date
             else:
                 print("Date must be in MMDDYYYY format")
 
         except Exception as exc:
             print("There was an error setting the date: ", exc)
+        
+
+def get_name():
+    while True:
+        name = input("Enter name: ")
+        
+        if name == "":
+            print("Name cannot be left blank ")
+
+        else: 
+            return name
+    
+def get_age():
+    while True:
+        age = input("Enter age: ")
+
+        if age == "":
+            print("Age cannot be left blank ")
+
+        return int(age)
+    
+def get_tour():
+    while True:
+        tour = input("Enter tour: ")
+
+        if tour == "":
+            print("Tour cannot be left blank ")
+
+        return tour
+    
+def get_city():
+    while True:
+        city = input("Enter city: ")
+            
+        if city == "":
+            print("City cannot be left blank ")
+
+        return city
+
+def get_venue():
+    while True:
+        venue = input("Enter venue: ")
+            
+        if venue == "":
+            print("Venue cannot be left blank ")
+
+        return venue
