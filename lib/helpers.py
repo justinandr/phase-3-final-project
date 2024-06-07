@@ -125,16 +125,26 @@ def get_valid_date(date = "", new = False):
                 print("There was an error setting the date: ", exc)
         
 
-def get_name():
-    while True:
-        name = input("Enter name: ")
-        
-        if name == "":
-            print("Name cannot be left blank ")
+def get_name(name = "", new = False):
+    if new == True:
+        while True:
+            new_name = input("Enter name: ")
+            
+            if new_name == "":
+                print("Name cannot be left blank ")
 
-        else: 
-            return name
-    
+            else: 
+                return new_name
+    else:
+        while True:
+            new_name = input("Enter new name or hit <enter> to leave as is: ")
+
+            if new_name == "":
+                return name
+            else:
+                return new_name
+
+
 def get_age(age = "", new = False):
     if new == True:
         while True:
