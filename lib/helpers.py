@@ -52,21 +52,13 @@ def add_artist(name, age):
     Artist.create(name, age)
 
 def update_artist(artist, name, age):
-    if name == "" and age == "":
-        pass
-    elif name == "":
-        artist.age = int(age)
-    elif age == "":
-        artist.name = name
-    else:
-        artist.name = name
-        artist.age = int(age)
-
-    Artist.update(artist)
+    artist.name = name
+    artist.age = age
+    artist.update()
 
 def delete_artist(artist):
-    Artist.delete_artist_concerts(artist)
-    Artist.delete(artist)
+    artist.delete_artist_concerts()
+    artist.delete()
 
 def update_concert(concert, tour, date, city, venue):
     if tour == "":
@@ -89,7 +81,7 @@ def add_concert(tour, date, city, venue, artist_id):
     Concert.create(tour, date, city, venue, artist_id)
 
 def delete_concert(concert):
-    Concert.delete(concert)
+    concert.delete()
 
 def get_valid_date(date = "", new = False):
     if new == True:

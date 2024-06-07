@@ -84,7 +84,7 @@ class Artist:
 
         CURSOR.execute(sql, (self.name, self.age, self.id))
         CONN.commit()
-
+    
     def delete(self):
         sql = """
             DELETE FROM artists WHERE id = ?
@@ -150,6 +150,7 @@ class Artist:
         return [Concert.instance_from_db(row) for row in rows]
     
     def delete_artist_concerts(self):
+        print("HERE?")
         sql = """
             SELECT * FROM concerts WHERE artist_id = ?
         """
@@ -159,4 +160,4 @@ class Artist:
         concerts = [Concert.instance_from_db(row) for row in rows]
 
         for concert in concerts:
-            Concert.delete(concert)
+            concert.delete()

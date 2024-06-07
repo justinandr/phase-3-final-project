@@ -70,7 +70,7 @@ def artist_menu():
             choice = input("> ")
             if choice.lower() == "a":
                 name = get_name()
-                age = get_age()
+                age = get_age("", True)
                 add_artist(name, age)
                 artist_menu()
             elif choice.lower() == "b":
@@ -87,7 +87,26 @@ def concert_menu(artist):
         print('\n*********************************')
         print("This artist has no saved concerts")
         print('*********************************\n')
-        artist_menu()
+        print("Type a to add a concert")
+        print("Type b to go back")
+        print("Type e to exit the program")
+
+        while True:
+            choice = input("> ")
+            if choice.lower() == "a":
+                tour = get_tour()
+                date = get_valid_date("", True)
+                city = get_city()
+                venue = get_venue()
+                add_concert(tour, date, city, venue, artist.id)
+                concert_menu(artist)
+            elif choice.lower() == "b":
+                artist_menu()
+            elif choice.lower() == "e":
+                exit_program()
+            else:
+                print("Invalid choice")
+
 
     print("Type the number of the concert to view it")
     print("Type a to add a concert")
@@ -109,7 +128,7 @@ def concert_menu(artist):
             concert_menu(artist)
         elif choice == "":
             print("Invalid choice")
-        elif int(choice) > 0 and int(choice) <= len(artist.concerts()):
+        elif choice.isdigit() and int(choice) > 0 and int(choice) <= len(artist.concerts()):
             concerts = artist.concerts()
             individual_concert_menu(concerts[int(choice) - 1])
         else:
