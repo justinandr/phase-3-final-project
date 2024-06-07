@@ -173,25 +173,25 @@ def get_tour():
     while True:
         tour = input("Enter tour: ")
 
-        if tour == "":
-            print("Tour cannot be left blank ")
-
-        return tour
+        if len(tour):
+            return tour
+        else:
+            print("Tour cannot be left blank")
     
 def get_city():
     while True:
         city = input("Enter city: ")
             
-        if city == "":
+        if len(city):
+            return city
+        else:
             print("City cannot be left blank ")
-
-        return city
 
 def get_venue():
     while True:
         venue = input("Enter venue: ")
             
-        if venue == "":
+        if len(venue):
+            return venue
+        else:
             print("Venue cannot be left blank ")
-
-        return venue

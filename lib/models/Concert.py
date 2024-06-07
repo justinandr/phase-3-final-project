@@ -31,12 +31,35 @@ class Concert:
             raise ValueError('Tour must be a non-empty string...')
         
     @property
+    def venue(self):
+        return self._venue
+    
+    @venue.setter
+    def venue(self, venue):
+        if isinstance(venue, str) and len(venue):
+            self._venue = venue
+        else:
+            raise ValueError('Venue must be a non-empty string')
+    
+        
+    @property
     def date(self):
         return self._date
     
     @date.setter
     def date(self, date):
         self._date = date
+
+    @property
+    def city(self):
+        return self._city
+    
+    @city.setter
+    def city(self, city):
+        if isinstance(city, str) and len(city):
+            self._city = city
+        else:
+            raise ValueError('City must be a non-empty string...')
 
     @classmethod
     def create_table(cls):
