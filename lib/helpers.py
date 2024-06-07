@@ -14,17 +14,15 @@ def get_all_artists():
 def find_artist_by_id(id):
     return Artist.find_by_id(id)
 
-def get_concerts(artist):
-    return artist.concerts()
-
 def display_artists(artists):
     print('\n*********************************')
     for i, artist in enumerate(artists, start=1):
         print(f'{i}. {artist.name} Age: {artist.age}')
     print('*********************************\n')
 
-def display_concerts(concerts):
-    print(f"\n{Artist.find_by_id(concerts[0].artist_id).name}'s Concerts")
+def display_concerts(artist):
+    concerts = artist.concerts()
+    print(f"\n{artist.name}'s Concerts")
     print('*********************************')
 
     for i, concert in enumerate(concerts, start=1):

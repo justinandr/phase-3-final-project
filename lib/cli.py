@@ -81,11 +81,9 @@ def artist_menu():
                 print("Invalid choice")
 
 def concert_menu(artist):
-    concerts = get_concerts(artist)
-
-    if concerts:
-        display_concerts(concerts)
-    else: 
+    if artist.concerts():
+        display_concerts(artist)
+    else:
         print('\n*********************************')
         print("This artist has no saved concerts")
         print('*********************************\n')
@@ -111,7 +109,8 @@ def concert_menu(artist):
             concert_menu(artist)
         elif choice == "":
             print("Invalid choice")
-        elif int(choice) > 0 and int(choice) <= len(concerts):
+        elif int(choice) > 0 and int(choice) <= len(artist.concerts()):
+            concerts = artist.concerts()
             individual_concert_menu(concerts[int(choice) - 1])
         else:
             print("Invalid choice")
